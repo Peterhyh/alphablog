@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    render plain: params[:article].inspect
+    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article.save
+    redirect_to @article # Redirects to the show controller above.
   end
 end
