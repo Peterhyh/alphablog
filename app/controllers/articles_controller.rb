@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Article was saved successfully."
       redirect_to @article # Redirects to the show controller above.
     else
-      render "new"
+      render :new, status: :unprocessable_entity # This is used instead of 'render "new"'
     end
   end
 end
