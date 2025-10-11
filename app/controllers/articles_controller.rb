@@ -12,7 +12,10 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(params.require(:article).permit(:title, :description))
-    @article.save
-    redirect_to @article # Redirects to the show controller above.
+    if @article.save
+      redirect_to @article # Redirects to the show controller above.
+    else
+      render "new"
+    end
   end
 end
