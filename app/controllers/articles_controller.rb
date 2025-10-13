@@ -7,9 +7,11 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
-
   def new
     @article = Article.new
+  end
+
+  def edit
   end
 
   def create
@@ -20,5 +22,8 @@ class ArticlesController < ApplicationController
     else
       render :new, status: :unprocessable_entity # This is used instead of 'render "new"'
     end
+  end
+
+  def update
   end
 end
