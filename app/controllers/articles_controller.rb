@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
   end
 
   def create
@@ -25,5 +26,12 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article = Article.find(params[:id])
+    if @article.update(params.require(:article).permit(:title, :description)) # Whitelist title and description to be used. 'params.require(:article).permit(:title, :description'
+      flash[:notice] = "Article was updated successfully"
+      redirect_to @article # Redirects to the articles show path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 end
