@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   get "about", to: "pages#about"
-  resources :articles, only: [ :show, :index, :new, :create, :edit, :update ] # 'articles' will have rails look through app/controllers/articles_controller.rb
+  resources :articles # 'articles' will have rails look through app/controllers/articles_controller.rb. resources :articles exposes all of the routes.
 end
