@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(params.require(:article).permit(:title, :description))
+    @article = Article.new(article_param)
     if @article.save
       flash[:notice] = "Article was saved successfully."
       redirect_to @article # Redirects to the show controller above.
@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(params.require(:article).permit(:title, :description)) # Whitelist title and description to be used. 'params.require(:article).permit(:title, :description'
+    if @article.update(article_param) # Whitelist title and description to be used. 'params.require(:article).permit(:title, :description'
       flash[:notice] = "Article was updated successfully"
       redirect_to @article # Redirects to the articles show path
     else
@@ -42,5 +42,9 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def article_param
+    params.require(:article).permit(:title, :description)
   end
 end
