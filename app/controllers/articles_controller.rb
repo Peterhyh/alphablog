@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [ :show, :edit, :update, :destroy ] # before_action method now triggers set_article for only show, edit, update, and destroy
   def show
-    @article = Article.find(params[:id])
   end
 
   def index
@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
@@ -26,7 +25,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(params.require(:article).permit(:title, :description)) # Whitelist title and description to be used. 'params.require(:article).permit(:title, :description'
       flash[:notice] = "Article was updated successfully"
       redirect_to @article # Redirects to the articles show path
@@ -36,8 +34,13 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
+  end
+
+  private # Indicates the methods below it is privately for this file only.
+
+  def set_article
+    @article = Article.find(params[:id])
   end
 end
