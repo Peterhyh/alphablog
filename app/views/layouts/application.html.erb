@@ -23,9 +23,7 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg|%>
-      <%= msg%>
-    <% end %>
+    <%= render 'layouts/messages' %> <!-- Renders the partial in the _messages.html.erb file -->
     <%= yield %>
   </body>
 </html>
