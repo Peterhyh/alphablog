@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(article_param) # Whitelist title and description to be used. 'params.require(:article).permit(:title, :description'
+    if @article.update(article_param) # Whitelist title and description to be used. 'params.require(:article).permit(:title, :description)'
       flash[:notice] = "Article was updated successfully"
       redirect_to @article # Redirects to the articles show path
     else
